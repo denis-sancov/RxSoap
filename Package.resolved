@@ -12,7 +12,7 @@
       },
       {
         "package": "FCB-utils",
-        "repositoryURL": "https://github.com/denis-sancov/FCB-utils.git",
+        "repositoryURL": "git@github.com:denis-sancov/FCB-utils.git",
         "state": {
           "branch": null,
           "revision": "8e1d7178e67d7f3c02e797560d6c51c4cceee618",
