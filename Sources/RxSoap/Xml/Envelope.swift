@@ -54,13 +54,22 @@ extension AEXMLElement: Node {
         return children
     }
 
-    public func read<T>(_ key: String) -> T? where T : Mappable {
+    public func read<T>(key: String) -> T? where T : Mappable {
         return try? T.map(value: self[key].string)
+    }
+
+    public func read<T>(attribute: String) -> T? where T : Mappable {
+        return try? T.map(value: attributes[attribute] ?? "")
     }
 
     public func descendant(name: String) -> Node? {
         return firstDescendant { $0.name == name }
     }
+
+    public func descendant(closure: @escaping (Node) -> Bool) -> Node? {
+        return firstDescendant(where: closure)
+    }
+
 
     public func descendants(name: String) -> [Node] {
         return allDescendants { $0.name == name }
