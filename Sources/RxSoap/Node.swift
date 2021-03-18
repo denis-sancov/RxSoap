@@ -12,6 +12,9 @@ public enum MappingError: Error {
 }
 
 public protocol Node {
+    var name: String { get }
+    var attributes: [String: String] { get } 
+
     var xml: String { get }
 
     var first: Node { get }
@@ -46,6 +49,10 @@ public extension Node {
             throw MappingError.absent
         }
         return value
+    }
+
+    func read<T>(attribute: String) -> T? where T : Mappable {
+        return try? T.map(value: attributes[attribute] ?? "")
     }
 }
 
